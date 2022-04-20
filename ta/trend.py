@@ -763,6 +763,7 @@ class ADXIndicator(IndicatorMixin):
         Returns:
             pandas.Series: New feature generated.tr
         """
+        np.seterr(divide='ignore', invalid='ignore')
         dip = np.zeros(len(self._trs))
         for i in range(len(self._trs)):
             dip[i] = 100 * (self._dip[i] / self._trs[i])
@@ -808,6 +809,7 @@ class ADXIndicator(IndicatorMixin):
         Returns:
             pandas.Series: New feature generated.
         """
+        np.seterr(divide='ignore', invalid='ignore')
         din = np.zeros(len(self._close))
         for i in range(1, len(self._trs) - 1):
             din[i + self._window] = 100 * (self._din[i] / self._trs[i])
